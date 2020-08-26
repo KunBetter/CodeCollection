@@ -14,7 +14,10 @@ public class CombinationSum {
         CombinationSum cc = new CombinationSum();
 
         int[] coins = new int[]{1, 2, 5};
-        System.out.println(cc.combinationSum(coins, 11));
+        List<List<Integer>> res = cc.combinationSum(coins, 11);
+        for (List<Integer> a : res) {
+            System.out.println(a);
+        }
     }
 
     public List<List<Integer>> combinationSum(int[] candidates, int target) {

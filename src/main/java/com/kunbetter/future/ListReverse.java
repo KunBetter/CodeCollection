@@ -31,8 +31,8 @@ public class ListReverse {
             end.next = null;
             pre.next = reverse(start);
             start.next = next;
-            pre = start;
 
+            pre = start;
             end = pre;
         }
         return dummy.next;

@@ -6,17 +6,18 @@ package com.kunbetter.future;
  * time 17:14
  * desc
  */
+@SuppressWarnings("ALL")
 public class Singleton {
 
-    private volatile static Singleton singleton;
+    private volatile static Singleton singleton = null;
 
     private Singleton() {
     }
 
     public static Singleton getSingleton() {
-        if (singleton == null) {
+        if (null == singleton) {
             synchronized (Singleton.class) {
-                if (singleton == null) {
+                if (null == singleton) {
                     singleton = new Singleton();
                 }
             }
