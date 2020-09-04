@@ -10,9 +10,16 @@ import java.util.concurrent.ConcurrentHashMap;
  * desc
  */
 public class LRUCache {
-    class Node {
-        int key, value;
-        Node pre, next;
+
+    public static void main(String[] argv) {
+
+    }
+
+    static class Node {
+        int key;
+        int value;
+        Node pre;
+        Node next;
 
         Node(int key, int value) {
             this.key = key;
@@ -26,10 +33,10 @@ public class LRUCache {
     private final int capacity;
 
     // dummy节点是一个冗余节点，dummy的next是链表的第一个节点，dummy的pre是链表的最后一个节点
-    private Node dummy;
+    private final Node dummy;
 
-    //保存key-Node对，Node是双向链表节点
-    private Map<Integer, Node> cache;
+    //保存key - Node对，Node是双向链表节点
+    private final Map<Integer, Node> cache;
 
     public LRUCache(int capacity) {
         this.capacity = capacity;
@@ -51,19 +58,17 @@ public class LRUCache {
         Node node = cache.get(key);
         if (node == null) {
             if (cache.size() >= capacity) {
+                //容量已满，删除首节点
                 cache.remove(dummy.next.key);
                 remove(dummy.next);
             }
-            node = new Node(key, value);
-            cache.put(key, node);
-            add(node);
         } else {
             cache.remove(node.key);
             remove(node);
-            node = new Node(key, value);
-            cache.put(key, node);
-            add(node);
         }
+        node = new Node(key, value);
+        cache.put(key, node);
+        add(node);
     }
 
     /**
